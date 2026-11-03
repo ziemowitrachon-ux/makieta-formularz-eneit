@@ -4,6 +4,9 @@ Dotyczy: `https://eneit.applicloud.pl/embed/kalkulator` osadzonego w ramce na
 `https://kalkulatorzuzyciapradu.pl` (strona główna i podstrony `/branze/<slug>`).
 Data: 03.11.2026. Zamawiający: Ziemowit (kalkulatorzuzyciapradu.pl).
 
+**Makieta online:** https://ziemowitrachon-ux.github.io/makieta-formularz-eneit/
+(sam formularz: https://ziemowitrachon-ux.github.io/makieta-formularz-eneit/formularz-makieta.html)
+
 W paczce:
 
 - `ZMIANY-FORMULARZA.md` – ten plik (lista zmian z dokładnymi tekstami, kolorami i zachowaniem),
