@@ -286,12 +286,12 @@ z obecnej klauzuli („…a nie w celu nieograniczonych kampanii marketingowych�
 - Link „Polityka prywatności” w stopce (adres z Waszej konfiguracji, nowa karta). W kopii „przed”
   w makiecie link prowadzi do `#` – to tylko uproszczenie kopii.
 
-## 5c. Zmiany na stronie – nie dotyczą Was
+## 5a. Zmiany na stronie – nie dotyczą Was
 
 W podglądzie widać też zmiany w sekcji hero obok formularza (nagłówek, zdanie pod nim, przycisk
 „Bezpłatna analiza kosztów”) i nową wysokość ramki. To wdrażamy my, w kodzie kalkulatorzuzyciapradu.pl.
 
-## 5a. Zachowania tylko w makiecie – nie wdrażać
+## 5b. Zachowania tylko w makiecie – nie wdrażać
 
 - Zamknięcie okna wyboru pliku bez wyboru dodaje przykładową fakturę (żeby dało się przeklikać).
 - Pliki nie są sprawdzane (typ, rozmiar, strony, liczba) i nigdzie nie są wysyłane.
@@ -300,7 +300,7 @@ W podglądzie widać też zmiany w sekcji hero obok formularza (nagłówek, zdan
 - Makieta mierzy cały `main` z `min-height: 545px` (uproszczenie) – w produkcji obowiązuje pkt 1.
 - Przełącznik TEST, parametry `?etap=…` i link „Zacznij od nowa (tylko w makiecie)”.
 
-## 5b. Teksty do potwierdzenia
+## 5c. Teksty do potwierdzenia
 
 Do czasu decyzji obowiązują teksty z tej specyfikacji. Do potwierdzenia przez Was lub zamawiającego:
 zdanie o zgodzie na etapie 1 (pkt 2.1, prawnik), zdanie „używamy tylko do przygotowania oferty”
