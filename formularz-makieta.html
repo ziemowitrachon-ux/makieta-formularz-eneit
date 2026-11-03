@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="pl" data-brand="eneit" class="geist_6ee70f7-module__6GiuUG__variable light" style="color-scheme: light;">
+<head><meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formularz ENEIT – makieta</title>
+<link rel="stylesheet" href="css/23jzlk4mvcq10.css">
+<link rel="stylesheet" href="css/33uaxjdnvzd6q.css">
+<link rel="stylesheet" href="css/0xmy8m2fmzhln.css">
+<style>
+  /* Makieta: elementy, których brakuje w skompilowanym CSS ENEIT */
+  .m-pole { display: block; width: 100%; box-sizing: border-box; padding: 0 12px; border: 1px solid #c8d9c8; background: #fff; color: #152b24; }
+  .embed-dark-panel .m-pole { background: #fff !important; color: #152b24 !important; border-color: #fff !important; caret-color: #416e19; }
+  .embed-dark-panel .m-pole:focus { outline: 2px solid #c8ff3d; outline-offset: 2px; }
+  .m-etykieta-pola { display: block; margin-bottom: 4px; }
+  .m-przycisk-wgraj { background: #d92d20 !important; border-color: #d92d20 !important; color: #fff !important; cursor: pointer; }
+  .m-przycisk-wgraj:hover { background: #b42318 !important; border-color: #b42318 !important; }
+  [data-etap]:not(.m-aktywny) { display: none !important; }
+  /* Po wgraniu plików pole robi się niskie, a lista plików ma miejsce */
+  .m-kompakt #m-strefa { flex: none; }
+  .m-kompakt #m-upuść { min-height: 0; flex: none; flex-direction: row; gap: 12px; padding: 10px 14px; }
+  .m-kompakt #m-upuść > svg { width: 20px; height: 20px; }
+  .m-kompakt #m-upuść > p { display: none; }
+  .m-kompakt #m-wgraj { min-height: 36px; height: 36px; }
+  .m-kompakt #m-strefa > p { margin-bottom: 8px; }
+  .m-plik { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; padding: 8px 10px; border: 1px solid #d5e7d5; border-radius: 8px; background: #fff; font-size: 13px; }
+  .m-plik:last-child { margin-bottom: 0; }
+  .m-miniatura { flex: none; width: 34px; height: 44px; overflow: hidden; border: 1px solid #d5e7d5; border-radius: 4px; background: #f4f8f3; display: grid; place-items: center; color: #4b782b; font-size: 9px; font-weight: 800; }
+  .m-miniatura iframe { width: 340px; height: 440px; border: 0; transform: scale(.1); transform-origin: 0 0; pointer-events: none; }
+  .m-plik-info { min-width: 0; flex: 1; }
+  .m-plik-nazwa { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-weight: 700; color: #152b24; }
+  .m-plik-meta { display: block; margin-top: 2px; font-size: 12px; color: #52675c; }
+  .m-plik-meta b { color: #416e19; font-weight: 700; }
+  .m-plik button { flex: none; padding: 4px 6px; border: 0; background: none; color: #416e19; font-size: 12px; font-weight: 700; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+  .m-plik button.m-usun { color: #60766a; }
+
+  /* Etap Kontakt: obowiązkowa zgoda pod przyciskiem, ramka rośnie do treści */
+  .m-zgoda-oferta { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; font-size: 12px; line-height: 1.5; color: #d7e0dc; }
+  .m-zgoda-oferta input { flex: none; width: 18px; height: 18px; margin: 1px 0 0; accent-color: #c8ff3d; cursor: pointer; }
+  .m-zgoda-oferta b { color: #c8ff3d; }
+  .m-bezpiecznie { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border-radius: 8px; font-size: 12px; line-height: 1.5; border: 1px solid #c8d9c8; background: #f4f9f2; color: #52675c; }
+  .m-bezpiecznie svg { flex: none; width: 20px; height: 20px; color: #416e19; }
+  .m-bezpiecznie strong { color: #152b24; }
+  .m-bezpiecznie-ciemne { border-color: #c8ff3d33; background: #c8ff3d0f; color: #bdc9cc; }
+  .m-bezpiecznie-ciemne svg { color: #c8ff3d; }
+  .m-bezpiecznie-ciemne strong { color: #fff; }
+  .m-zgoda-oferta a { color: #c8ff3d; text-decoration: underline; text-underline-offset: 3px; }
+  .m-zgoda-blad { margin: -6px 0 0 28px; font-size: 12px; font-weight: 700; color: #ff8a80; }
+  .m-zgoda-oferta.m-blad input { outline: 2px solid #ff8a80; outline-offset: 2px; }
+  body.m-wysoki main { height: auto !important; overflow: visible; }
+  body.m-wysoki main > div, body.m-wysoki main .overflow-y-auto { flex: none; overflow: visible; }
+
+  /* Wynik: mocno wyróżniona kwota oszczędności */
+  .m-wow { position: relative; overflow: hidden; padding: 20px 22px 18px; border-radius: 14px; background: radial-gradient(120% 140% at 0% 0%, #e9ffb3 0%, #c8ff3d 45%, #9fe02a 100%); box-shadow: 0 0 0 1px #a6e63155, 0 12px 34px -10px #8fd11f99, 0 0 40px -8px #c8ff3d; animation: m-wow-wejscie .7s cubic-bezier(.2,.9,.3,1.2) both; }
+  .m-wow-blask { position: absolute; inset: -40% auto -40% -30%; width: 40%; background: linear-gradient(100deg, transparent, #ffffffaa, transparent); transform: skewX(-18deg); animation: m-wow-blask 3.2s ease-in-out 0.9s infinite; pointer-events: none; }
+  .m-wow-etykieta { position: relative; margin: 0; font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #1d3b12; }
+  .m-wow-kwota { position: relative; margin: 6px 0 4px; font-size: 54px; line-height: 1; font-weight: 800; letter-spacing: -.06em; color: #0c2338; }
+  .m-wow-miesiac { position: relative; margin: 0 0 12px; font-size: 14px; color: #1d3b12; }
+  .m-wow-miesiac strong { font-weight: 800; color: #0c2338; }
+  .m-wow-przypis { position: relative; margin: 0; padding-top: 10px; border-top: 1px solid #0c233826; font-size: 11px; color: #2f4d22; }
+  @keyframes m-wow-wejscie { from { opacity: 0; transform: translateY(10px) scale(.96); } }
+  @keyframes m-wow-blask { 0% { left: -40%; } 45%, 100% { left: 130%; } }
+  @media (prefers-reduced-motion: reduce) { .m-wow, .m-wow-blask { animation: none; } .m-wow-blask { display: none; } }
+
+  /* Etap Analiza: faktury krążące wokół błyskawicy, zmieniające się komunikaty */
+  .m-analiza { text-align: center; padding: 14px 16px !important; }
+  .m-orbita { position: relative; width: 96px; height: 96px; margin: 0 auto 6px; }
+  .m-tor { position: absolute; inset: 11px; border: 1.5px dashed #b9d4b0; border-radius: 50%; }
+  .m-rdzen { position: absolute; inset: 31px; display: grid; place-items: center; border-radius: 50%; background: #c8ff3d; color: #0c2338; box-shadow: 0 0 0 6px #c8ff3d33; animation: m-puls 1.6s ease-in-out infinite; }
+  .m-rdzen svg { width: 18px; height: 18px; }
+  .m-kolo { position: absolute; inset: 0; animation: m-obrot 4.5s linear infinite; }
+  .m-faktura { position: absolute; left: 50%; top: 50%; width: 22px; height: 28px; margin: -14px 0 0 -11px; padding: 5px 4px; box-sizing: border-box; border: 1.5px solid #416e19; border-radius: 4px; background: #fff; box-shadow: 0 4px 10px #19352b22; transform: rotate(var(--k)) translateY(-37px) rotate(calc(-1 * var(--k))); }
+  .m-faktura > i { display: block; height: 2px; margin-bottom: 3px; border-radius: 1px; background: #a7c2ad; }
+  .m-faktura > i:first-child { width: 60%; background: #416e19; }
+  .m-kolo .m-faktura { animation: m-kontra 4.5s linear infinite; }
+  .m-komunikat { min-height: 1.3em; transition: opacity .35s ease, transform .35s ease; }
+  .m-komunikat.m-zmiana { opacity: 0; transform: translateY(6px); }
+  .m-kroki { list-style: none; margin: 8px auto 10px; padding: 0; display: grid; gap: 3px; max-width: 260px; text-align: left; }
+  .m-kroki li { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #8aa093; transition: color .3s; }
+  .m-kroki li::before { content: ''; flex: none; width: 14px; height: 14px; box-sizing: border-box; border: 1.5px solid #c8d9c8; border-radius: 50%; }
+  .m-kroki li.m-teraz { color: #152b24; font-weight: 700; }
+  .m-kroki li.m-teraz::before { border-color: #78aa39; border-top-color: transparent; animation: m-obrot .8s linear infinite; }
+  .m-kroki li.m-gotowe { color: #416e19; }
+  .m-kroki li.m-gotowe::before { border: 0; background: #416e19 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 9px no-repeat; }
+  .m-pasek { background: linear-gradient(90deg, #78aa39, #c8ff3d, #78aa39); background-size: 200% 100%; transition: width .6s ease; animation: m-blask 1.6s linear infinite; }
+  @keyframes m-obrot { to { transform: rotate(360deg); } }
+  @keyframes m-kontra { from { transform: rotate(var(--k)) translateY(-37px) rotate(calc(-1 * var(--k))); } to { transform: rotate(var(--k)) translateY(-37px) rotate(calc(-1 * var(--k) - 360deg)); } }
+  @keyframes m-puls { 50% { box-shadow: 0 0 0 12px #c8ff3d22; } }
+  @keyframes m-blask { to { background-position: -200% 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .m-kolo, .m-kolo .m-faktura, .m-rdzen, .m-pasek, .m-kroki li.m-teraz::before { animation: none; }
+  }
+</style>
+</head>
+<body class="antialiased">
+<div class="dm_sans_c2676bee-module__MjeD7W__variable manrope_ee4ddb98-module__3HxfRq__variable embed-surface text-foreground">
+<main class="embed-card mx-auto flex h-dvh w-full max-w-xl flex-col overflow-hidden px-[21px] py-[25px] min-[421px]:p-8">
+  <div class="flex min-h-0 flex-1 flex-col gap-5">
+
+    <header class="space-y-2">
+      <h1 id="m-tytul" class="font-display text-[22px] leading-tight font-bold tracking-[-0.045em] text-[#152b24]">Rozpocznij darmową analizę</h1>
+      <p id="m-wstep" class="text-[13px] leading-relaxed text-[#52675c]">Prześlij faktury za prąd – w kilka minut pokażemy potencjał oszczędności dla Twojej firmy.</p>
+    </header>
+
+    <nav aria-label="Etapy"><ol id="m-etapy" class="grid grid-cols-3 gap-2"></ol></nav>
+
+    <div class="-mx-1 flex min-h-0 flex-1 flex-col overflow-y-auto px-1">
+
+      <!-- ETAP 1: Faktury -->
+      <div data-etap="upload" class="m-aktywny flex min-h-0 flex-1 flex-col gap-4">
+        <div id="m-strefa" class="flex flex-1 flex-col">
+          <p class="mb-3 text-xs font-extrabold text-[#1e382d]">1. Wgraj ostatnie faktury za prąd</p>
+          <div id="m-upuść" role="button" tabindex="0" class="min-h-[135px] flex-1 flex-col justify-center gap-2 p-5 text-center flex cursor-pointer items-center rounded-[9px] border-[1.5px] border-dashed border-[#a7c2ad] bg-white transition-colors hover:border-[#6b9a38]">
+            <input id="m-plik" multiple accept="application/pdf" class="hidden" type="file">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-7 text-[#4b782b]" aria-hidden="true"><path d="M12 13v8"></path><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path><path d="m8 17 4-4 4 4"></path></svg>
+            <p class="text-[13px] font-bold text-[#1b392d]">Przeciągnij pliki lub kliknij</p>
+            <p class="text-xs text-[#60766a]">PDF, do 20 MB i 30 stron, maks. 50 plików</p>
+            <button id="m-wgraj" class="m-przycisk-wgraj inline-flex items-center justify-center gap-2 whitespace-nowrap border shadow-sm h-9 px-4 py-2 min-h-11 rounded-[8px] text-[13px] font-bold" type="button">Wgraj fakturę za prąd</button>
+          </div>
+        </div>
+        <div id="m-lista" class="-mx-1 min-h-0 overflow-y-auto px-1"></div>
+      </div>
+
+      <!-- ETAP 2: Analiza -->
+      <div data-etap="processing" class="flex flex-1 flex-col justify-center">
+        <div class="m-analiza rounded-[12px] border border-[#d5e7d5] bg-white/70 p-5">
+          <div class="m-orbita" aria-hidden="true">
+            <span class="m-rdzen">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </span>
+            <span class="m-tor"></span>
+            <span class="m-kolo">
+              <span class="m-faktura" style="--k:0deg"><i></i><i></i><i></i></span>
+              <span class="m-faktura" style="--k:120deg"><i></i><i></i><i></i></span>
+              <span class="m-faktura" style="--k:240deg"><i></i><i></i><i></i></span>
+            </span>
+          </div>
+          <h2 id="m-komunikat" class="m-komunikat font-display text-[22px] leading-tight font-bold tracking-[-0.045em] text-[#152b24]" aria-live="polite">Analizujemy Twoje faktury</h2>
+          <ol id="m-kroki" class="m-kroki"></ol>
+          <span class="block h-2 w-full overflow-hidden rounded-full bg-[#dbe6d7]"><span id="m-pasek" class="m-pasek block h-full" style="width:0%"></span></span>
+          <p id="m-licznik" class="text-[13px] text-[#52675c]" style="margin-top:10px">Przetworzono 0 z 1 faktury</p>
+        </div>
+      </div>
+
+      <!-- ETAP 3: Wynik i kontakt -->
+      <div data-etap="result" class="space-y-4">
+        <div class="m-wow" id="m-wow">
+          <span class="m-wow-blask" aria-hidden="true"></span>
+          <p class="m-wow-etykieta">Możesz zaoszczędzić rocznie</p>
+          <p class="m-wow-kwota font-display tabular-nums"><span id="m-kwota" data-kwota="4860">4 860</span>&nbsp;zł</p>
+          <p class="m-wow-miesiac">to ok. <strong>405 zł</strong> mniej na rachunkach co miesiąc</p>
+          <p class="m-wow-przypis">Szacunek na podstawie odczytu faktur. Dokładną analizę przygotuje doradca.</p>
+        </div>
+        <form id="m-kontakt" novalidate class="embed-dark-panel space-y-4 p-5 min-[421px]:p-6">
+          <h2 class="font-display text-[19px] leading-tight font-bold tracking-[-0.04em] text-white">Zamów ofertę dla swojej firmy, aby zacząć oszczędzać.</h2>
+          <div>
+            <label class="m-etykieta-pola text-xs font-extrabold text-[#f0f3ef]" for="m-imie">Imię i nazwisko</label>
+            <input id="m-imie" class="m-pole min-h-11 rounded-[8px] text-base" autocomplete="off">
+          </div>
+          <div class="grid items-start gap-4 min-[421px]:grid-cols-2">
+            <div>
+              <label class="m-etykieta-pola text-xs font-extrabold text-[#f0f3ef]" for="m-email">E-mail firmowy</label>
+              <input id="m-email" type="email" class="m-pole min-h-11 rounded-[8px] text-base" autocomplete="off">
+            </div>
+            <div>
+              <label class="m-etykieta-pola text-xs font-extrabold text-[#f0f3ef]" for="m-tel">Telefon</label>
+              <input id="m-tel" type="tel" class="m-pole min-h-11 rounded-[8px] text-base" autocomplete="off">
+              <p class="text-xs text-[#bdc9cc]" style="margin-top:4px">9 cyfr, opcjonalnie z +48</p>
+            </div>
+          </div>
+          <button type="submit" class="inline-flex items-center justify-center gap-2 h-[53px] w-full rounded-[8px] bg-[#c8ff3d] text-[15px] font-extrabold text-[#0c2338] shadow-none hover:bg-[#ddff79]">Zacznij oszczędzać</button>
+          <label class="m-zgoda-oferta">
+            <input id="m-zgoda-oferta" type="checkbox" required aria-describedby="m-zgoda-blad">
+            <span>Wyrażam zgodę na przetwarzanie moich danych w celu przygotowania i przesłania szczegółowej oferty. Szczegóły w <a href="https://kalkulatorzuzyciapradu.pl/polityka-prywatnosci" target="_blank" rel="noopener noreferrer">Polityce prywatności</a> i <a href="https://kalkulatorzuzyciapradu.pl/regulamin" target="_blank" rel="noopener noreferrer">Regulaminie</a>. <b aria-hidden="true">*</b></span>
+          </label>
+          <p id="m-zgoda-blad" class="m-zgoda-blad" role="alert" hidden>Zaznacz zgodę, aby otrzymać ofertę.</p>
+          <div class="m-bezpiecznie m-bezpiecznie-ciemne">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10 11V9.5a2 2 0 0 1 4 0V11"/></svg>
+            <span><strong>Twoje dane są bezpieczne.</strong> Przesyłamy je szyfrowanym połączeniem HTTPS i używamy tylko do przygotowania oferty.</span>
+          </div>
+        </form>
+      </div>
+
+      <!-- Podziękowanie -->
+      <div data-etap="thanks" class="flex flex-1 flex-col justify-center gap-4">
+        <div class="space-y-3 rounded-[12px] border border-[#c8ff3d88] bg-[linear-gradient(120deg,#f4ffe6,#e2fae7)] p-5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-8 text-[#416e19]" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
+          <h2 class="font-display text-[22px] leading-tight font-bold tracking-[-0.045em] text-[#152b24]">Dziękujemy</h2>
+          <p class="text-sm text-[#1e382d]">Doradca skontaktuje się z Tobą wkrótce. (Tekst podziękowania ENEIT ustawia w swoim panelu – tu przykład.)</p>
+          <button id="m-od-nowa" type="button" class="text-[13px] font-semibold text-[#416e19] underline underline-offset-4">Zacznij od nowa (tylko w makiecie)</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Przycisk analizy pod etapem 1 -->
+    <button id="m-analizuj" type="button" data-etap="upload-akcja" class="inline-flex items-center justify-center gap-2 h-[53px] w-full rounded-[8px] bg-[#c8ff3d] text-[15px] font-extrabold text-[#0c2338] shadow-none hover:bg-[#ddff79]">Analizuj faktury (0)</button>
+
+    <footer class="shrink-0 border-t border-[#c8d9c8] pt-3 text-xs text-[#60766a]">
+      <p id="m-https" class="leading-relaxed" style="margin:0 0 6px;display:flex;align-items:center;gap:6px;color:#416e19;font-weight:700"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Faktury przesyłamy szyfrowanym połączeniem HTTPS</p>
+      <p id="m-zgoda" class="leading-relaxed" style="margin:0 0 6px">Wgrywając fakturę, wyrażam zgodę na przetwarzanie moich danych w celu przygotowania analizy.</p>
+      <a href="https://kalkulatorzuzyciapradu.pl/polityka-prywatnosci" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#416e19] underline underline-offset-4">Polityka prywatności</a>
+    </footer>
+  </div>
+</main>
+</div>
+
+<script>
+  // Makieta: pliki zostają w przeglądarce, nic nie jest wysyłane.
+  const nazwyEtapow = ['Faktury', 'Analiza', 'Kontakt'];
+  const naglowki = {
+    start: ['Rozpocznij darmową analizę', 'Prześlij faktury za prąd – w kilka minut pokażemy potencjał oszczędności dla Twojej firmy.'],
+    result: ['Twoja analiza', 'Wstępny wynik na podstawie przesłanych faktur.'],
+  };
+  const ikonaPliku = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>';
+  const ptaszek = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="size-3" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+
+  let pliki = [];
+  const $ = (id) => document.getElementById(id);
+
+  function rysujEtapy(biezacy) {
+    $('m-etapy').innerHTML = nazwyEtapow.map((n, i) => {
+      const akt = i === biezacy, zrob = i < biezacy;
+      const kolko = akt ? 'grid size-5 shrink-0 place-items-center rounded-full bg-[#c8ff3d] text-[11px] font-extrabold text-[#0c2338]'
+        : zrob ? 'grid size-5 shrink-0 place-items-center rounded-full bg-[#416e19] text-[11px] font-extrabold text-white'
+        : 'grid size-5 shrink-0 place-items-center rounded-full border border-[#adc4b4] text-[11px] font-extrabold text-[#60766a]';
+      const napis = akt ? 'text-xs font-bold text-[#152b24]' : zrob ? 'text-xs font-bold text-[#416e19]' : 'text-xs font-bold text-[#60766a]';
+      const kreska = akt || zrob ? 'h-0.5 rounded-full bg-[#c8ff3d]' : 'h-0.5 rounded-full bg-[#dbe6d7]';
+      return `<li class="space-y-1.5"><div class="flex items-center gap-1.5"><span class="${kolko}">${zrob ? ptaszek : i + 1}</span><span class="${napis}">${n}</span></div><div class="${kreska}"></div></li>`;
+    }).join('');
+  }
+
+  function pokaz(etap) {
+    document.querySelectorAll('[data-etap]').forEach((el) => {
+      el.classList.toggle('m-aktywny', el.dataset.etap === etap || (etap === 'upload' && el.dataset.etap === 'upload-akcja' && pliki.length > 0));
+    });
+    const [t, w] = etap === 'result' || etap === 'thanks' ? naglowki.result : naglowki.start;
+    $('m-tytul').textContent = t;
+    $('m-wstep').textContent = w;
+    $('m-wstep').hidden = etap === 'processing';
+    $('m-zgoda').hidden = etap !== 'upload';
+    $('m-https').hidden = etap !== 'upload';
+    rysujEtapy({ upload: 0, processing: 1, result: 2, thanks: 2 }[etap]);
+    document.body.classList.toggle('m-wysoki', etap === 'result' || etap === 'thanks');
+    if (etap === 'result') nabijKwote();
+    wyslijWysokosc();
+  }
+
+  // Wynik: kwota „nabija się” od zera
+  const tysiace = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0');
+  function nabijKwote() {
+    const el = $('m-kwota');
+    const cel = Number(el.dataset.kwota);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = tysiace(cel); return; }
+    const start = performance.now(), czas = 1400;
+    const klatka = (t) => {
+      const p = Math.min(1, (t - start) / czas);
+      el.textContent = tysiace(Math.round(cel * (1 - Math.pow(1 - p, 3))));
+      if (p < 1) requestAnimationFrame(klatka);
+    };
+    requestAnimationFrame(klatka);
+  }
+
+  // Ramka na stronie dopasowuje wysokość do komunikatu (ten sam format, którego używa ENEIT)
+  function wyslijWysokosc() {
+    if (window.parent === window) return;
+    requestAnimationFrame(() => {
+      const wysokosc = document.body.classList.contains('m-wysoki')
+        ? Math.ceil(document.querySelector('main').getBoundingClientRect().height)
+        : (window.innerWidth >= 420 ? 545 : 900);
+      window.parent.postMessage({ type: 'eneit-embed-height', height: wysokosc }, '*');
+    });
+  }
+
+  function rozmiar(b) { return b > 1048576 ? (b / 1048576).toFixed(1).replace('.', ',') + ' MB' : Math.max(1, Math.round(b / 1024)) + ' KB'; }
+
+  const esc = (s) => s.replace(/[&<>"]/g, (z) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[z]));
+
+  function rysujListe() {
+    $('m-lista').innerHTML = pliki.map((p, i) => `
+      <div class="m-plik">
+        <span class="m-miniatura">${p.url ? `<iframe src="${p.url}#toolbar=0&navpanes=0&view=FitH" tabindex="-1" aria-hidden="true"></iframe>` : 'PDF'}</span>
+        <span class="m-plik-info"><span class="m-plik-nazwa" title="${esc(p.name)}">${esc(p.name)}</span><span class="m-plik-meta">${rozmiar(p.size)} · <b>przesłano</b></span></span>
+        ${p.url ? `<button type="button" data-podglad="${i}">Podgląd</button>` : ''}
+        <button type="button" class="m-usun" data-usun="${i}" aria-label="Usuń ${esc(p.name)}">Usuń</button>
+      </div>`).join('');
+    document.body.classList.toggle('m-kompakt', pliki.length > 0);
+    $('m-wgraj').textContent = pliki.length ? 'Dodaj kolejną fakturę' : 'Wgraj fakturę za prąd';
+    $('m-analizuj').textContent = `Analizuj faktury (${pliki.length})`;
+    pokaz('upload');
+  }
+
+  function dodajPliki(lista) {
+    pliki.push(...lista.map((f) => ({ name: f.name, size: f.size, url: f instanceof File ? URL.createObjectURL(f) : null })));
+    rysujListe();
+  }
+
+  $('m-lista').addEventListener('click', (e) => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    if (b.dataset.podglad) window.open(pliki[b.dataset.podglad].url, '_blank');
+    if (b.dataset.usun) { const [p] = pliki.splice(Number(b.dataset.usun), 1); if (p.url) URL.revokeObjectURL(p.url); rysujListe(); }
+  });
+
+  // Wybór pliku z dysku; anulowanie okna dodaje przykładową fakturę, żeby dało się przejść dalej
+  $('m-wgraj').addEventListener('click', (e) => { e.stopPropagation(); $('m-plik').click(); });
+  $('m-upuść').addEventListener('click', () => $('m-plik').click());
+  $('m-upuść').addEventListener('keydown', (e) => { if (e.target === e.currentTarget && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); $('m-plik').click(); } });
+  $('m-plik').addEventListener('change', (e) => { if (e.target.files.length) dodajPliki([...e.target.files]); e.target.value = ''; });
+  $('m-plik').addEventListener('cancel', () => dodajPliki([{ name: 'faktura-prad-10-2026.pdf', size: 248000 }]));
+  $('m-upuść').addEventListener('dragover', (e) => e.preventDefault());
+  $('m-upuść').addEventListener('drop', (e) => { e.preventDefault(); if (e.dataTransfer.files.length) dodajPliki([...e.dataTransfer.files]); });
+
+  // Kolejne kroki analizy – pokazują użytkownikowi, że coś się dzieje
+  const krokiAnalizy = ['Analizujemy Twoje faktury', 'Sprawdzamy poziom zużycia', 'Porównujemy dane', 'Przygotowujemy wyliczenia'];
+  const CZAS_KROKU = 1800;
+  let zegarAnalizy = null;
+
+  function ustawKomunikat(tekst) {
+    const h = $('m-komunikat');
+    h.classList.add('m-zmiana');
+    setTimeout(() => { h.textContent = tekst; h.classList.remove('m-zmiana'); }, 350);
+  }
+
+  function rysujKroki(biezacy) {
+    $('m-kroki').innerHTML = krokiAnalizy.map((k, i) => `<li class="${i < biezacy ? 'm-gotowe' : i === biezacy ? 'm-teraz' : ''}">${k}</li>`).join('');
+  }
+
+  function uruchomAnalize({ zapetl = false } = {}) {
+    clearTimeout(zegarAnalizy);
+    pokaz('processing');
+    const razem = Math.max(1, pliki.length);
+    const wszystkie = krokiAnalizy.length;
+    let i = 0;
+    const krok = () => {
+      const postep = Math.min(1, i / wszystkie);
+      const przetworzone = Math.min(razem, Math.floor(postep * razem));
+      $('m-pasek').style.width = `${Math.max(6, postep * 100)}%`;
+      $('m-licznik').textContent = `Przetworzono ${przetworzone} z ${razem} ${razem === 1 ? 'faktury' : 'faktur'}`;
+      if (i >= wszystkie) {
+        if (zapetl) { i = 0; zegarAnalizy = setTimeout(krok, 900); return; }
+        rysujKroki(wszystkie);
+        zegarAnalizy = setTimeout(() => pokaz('result'), 900);
+        return;
+      }
+      rysujKroki(i);
+      ustawKomunikat(`${krokiAnalizy[i]}…`);
+      i += 1;
+      zegarAnalizy = setTimeout(krok, CZAS_KROKU);
+    };
+    rysujKroki(0);
+    $('m-komunikat').textContent = `${krokiAnalizy[0]}…`;
+    krok();
+  }
+
+  $('m-analizuj').addEventListener('click', () => uruchomAnalize({ zapetl: stopNaAnalizie }));
+
+  $('m-kontakt').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const zgoda = $('m-zgoda-oferta');
+    $('m-zgoda-blad').hidden = zgoda.checked;
+    zgoda.closest('label').classList.toggle('m-blad', !zgoda.checked);
+    if (!zgoda.checked) { zgoda.focus(); wyslijWysokosc(); return; }
+    pokaz('thanks');
+  });
+  $('m-zgoda-oferta').addEventListener('change', (e) => {
+    if (!e.target.checked) return;
+    $('m-zgoda-blad').hidden = true;
+    e.target.closest('label').classList.remove('m-blad');
+    wyslijWysokosc();
+  });
+  $('m-od-nowa').addEventListener('click', () => { pliki.forEach((p) => p.url && URL.revokeObjectURL(p.url)); pliki = []; rysujListe(); });
+
+  // ?etap=analiza – makieta staje na ekranie analizy i nie przechodzi dalej
+  const etapZAdresu = new URLSearchParams(location.search).get('etap');
+  const stopNaAnalizie = etapZAdresu === 'analiza';
+  if (etapZAdresu === 'wynik' || etapZAdresu === 'dziekujemy') {
+    dodajPliki([{ name: 'faktura-prad-09-2026.pdf', size: 231000 }, { name: 'faktura-prad-10-2026.pdf', size: 248000 }]);
+    pokaz(etapZAdresu === 'wynik' ? 'result' : 'thanks');
+  } else if (stopNaAnalizie) {
+    dodajPliki([{ name: 'faktura-prad-09-2026.pdf', size: 231000 }, { name: 'faktura-prad-10-2026.pdf', size: 248000 }]);
+    uruchomAnalize({ zapetl: true });
+  } else {
+    pokaz('upload');
+  }
+</script>
+</body>
+</html>
