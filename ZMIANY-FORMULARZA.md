@@ -286,6 +286,11 @@ z obecnej klauzuli („…a nie w celu nieograniczonych kampanii marketingowych�
 - Link „Polityka prywatności” w stopce (adres z Waszej konfiguracji, nowa karta). W kopii „przed”
   w makiecie link prowadzi do `#` – to tylko uproszczenie kopii.
 
+## 5c. Zmiany na stronie – nie dotyczą Was
+
+W podglądzie widać też zmiany w sekcji hero obok formularza (nagłówek, zdanie pod nim, przycisk
+„Bezpłatna analiza kosztów”) i nową wysokość ramki. To wdrażamy my, w kodzie kalkulatorzuzyciapradu.pl.
+
 ## 5a. Zachowania tylko w makiecie – nie wdrażać
 
 - Zamknięcie okna wyboru pliku bez wyboru dodaje przykładową fakturę (żeby dało się przeklikać).
