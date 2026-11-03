@@ -117,7 +117,7 @@ W stopce (`footer`, nad linkiem „Polityka prywatności”), tylko na tym etapi
 1. z ikoną kłódki (lucide `Lock`, 14 px, kolor `#416e19`, tekst pogrubiony `#416e19`):
    **„Faktury przesyłamy szyfrowanym połączeniem HTTPS”**
 2. zwykły tekst (`text-xs text-[#60766a] leading-relaxed`):
-   **„Wgrywając fakturę, wyrażam zgodę na przetwarzanie moich danych w celu przygotowania analizy.”**
+   **„Wgrywając fakturę, wyrażasz zgodę na przetwarzanie Twoich danych w celu przygotowania analizy.”**
 
 > Do decyzji po Waszej stronie (prawnik): czy podstawą przetwarzania na tym etapie zostaje zgoda
 > wyrażona przez wgranie pliku, czy działanie na żądanie osoby przed zawarciem umowy
