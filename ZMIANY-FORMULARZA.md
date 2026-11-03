@@ -225,6 +225,19 @@ Cel: użytkownik ma widzieć, że coś się dzieje. Zamiast statycznej karty z p
 - **Usunąć** etykietę „Bezpłatna konsultacja” (to nie jest konsultacja).
 - Nagłówek (h2, 19 px): **„Zamów ofertę dla swojej firmy, aby zacząć oszczędzać.”**
   (zamiast „Chcesz poznać szczegóły? Zostaw kontakt”).
+- **Nowe pole „NIP firmy”** – w pierwszym rzędzie obok „Imię i nazwisko” (na wąskim ekranie pod nim),
+  dalej rząd „E-mail firmowy” | „Telefon”.
+  - **Uzupełnia się samo z faktury**, jeśli backend odczytał NIP (dziś już go macie: `result.teaser.nip`
+    w wyniku analizy). Pole jest wtedy podświetlone (`inset 0 0 0 2px #c8ff3d`, tło `#f7ffe6`),
+    a pod nim zamiast podpowiedzi: **„✓ Uzupełniliśmy z faktury – sprawdź, czy się zgadza”**
+    (12 px, 700, `#c8ff3d`). Gdy faktury mają różne NIP-y, wpiszcie ten, którego dotyczy wynik
+    (ten sam, który dziś pokazujecie w ostrzeżeniu „Pominęliśmy … innej firmy (inny NIP)”).
+  - Gdy NIP-u nie ma: puste pole i podpowiedź „10 cyfr, bez kresek” (12 px, `#bdc9cc`).
+  - Użytkownik może go zmienić; po pierwszej edycji podświetlenie i napis „z faktury” znikają.
+  - Walidacja: kreski i spacje usuwane, 10 cyfr, poprawna suma kontrolna (wagi 6-5-7-2-3-4-5-6-7,
+    suma mod 11 = ostatnia cyfra). Błąd: **„Podaj poprawny NIP (10 cyfr).”** (12 px, 700, `#ff8a80`)
+    i obwódka `2px #ff8a80`. W makiecie pole jest wymagane – ostateczna decyzja po Waszej stronie.
+  - `inputmode="numeric"`, `autocomplete="off"`; zapiszcie NIP razem z kontaktem.
 - Pola „Imię i nazwisko”, „E-mail firmowy”, „Telefon”: **tło białe `#ffffff`**, tekst `#152b24`,
   obramowanie białe; fokus: `outline 2px #c8ff3d`, `outline-offset 2px`.
   Walidacja pól i komunikaty błędów bez zmian (makieta ich nie pokazuje).
@@ -278,7 +291,7 @@ z obecnej klauzuli („…a nie w celu nieograniczonych kampanii marketingowych�
 - Zamknięcie okna wyboru pliku bez wyboru dodaje przykładową fakturę (żeby dało się przeklikać).
 - Pliki nie są sprawdzane (typ, rozmiar, strony, liczba) i nigdzie nie są wysyłane.
 - Analiza trwa stałe ok. 7 s, kwota jest na sztywno.
-- Formularz kontaktowy sprawdza tylko zgodę; po jej zaznaczeniu od razu pokazuje „Dziękujemy”.
+- Formularz kontaktowy sprawdza tylko NIP i zgodę; potem od razu pokazuje „Dziękujemy”. NIP „z faktury” to przykładowy numer `1234567883`.
 - Makieta mierzy cały `main` z `min-height: 545px` (uproszczenie) – w produkcji obowiązuje pkt 1.
 - Przełącznik TEST, parametry `?etap=…` i link „Zacznij od nowa (tylko w makiecie)”.
 

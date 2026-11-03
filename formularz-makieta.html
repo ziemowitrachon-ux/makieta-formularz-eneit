@@ -12,6 +12,8 @@
   .m-pole { display: block; width: 100%; box-sizing: border-box; padding: 0 12px; border: 1px solid #c8d9c8; background: #fff; color: #152b24; }
   .embed-dark-panel .m-pole { background: #fff !important; color: #152b24 !important; border-color: #fff !important; caret-color: #416e19; }
   .embed-dark-panel .m-pole:focus { outline: 2px solid #c8ff3d; outline-offset: 2px; }
+  .embed-dark-panel .m-pole.m-z-faktury { box-shadow: inset 0 0 0 2px #c8ff3d; background: #f7ffe6 !important; }
+  .m-nip-z-faktury { color: #c8ff3d; font-weight: 700; }
   .m-etykieta-pola { display: block; margin-bottom: 4px; }
   .m-przycisk-wgraj { background: #d92d20 !important; border-color: #d92d20 !important; color: #fff !important; cursor: pointer; }
   .m-przycisk-wgraj:hover { background: #b42318 !important; border-color: #b42318 !important; }
@@ -158,9 +160,17 @@
         </div>
         <form id="m-kontakt" novalidate class="embed-dark-panel space-y-4 p-5 min-[421px]:p-6">
           <h2 class="font-display text-[19px] leading-tight font-bold tracking-[-0.04em] text-white">Zamów ofertę dla swojej firmy, aby zacząć oszczędzać.</h2>
-          <div>
-            <label class="m-etykieta-pola text-xs font-extrabold text-[#f0f3ef]" for="m-imie">Imię i nazwisko</label>
-            <input id="m-imie" class="m-pole min-h-11 rounded-[8px] text-base" autocomplete="off">
+          <div class="grid items-start gap-4 min-[421px]:grid-cols-2">
+            <div>
+              <label class="m-etykieta-pola text-xs font-extrabold text-[#f0f3ef]" for="m-imie">Imię i nazwisko</label>
+              <input id="m-imie" class="m-pole min-h-11 rounded-[8px] text-base" autocomplete="off">
+            </div>
+            <div>
+              <label class="m-etykieta-pola text-xs font-extrabold text-[#f0f3ef]" for="m-nip">NIP firmy</label>
+              <input id="m-nip" class="m-pole min-h-11 rounded-[8px] text-base" inputmode="numeric" autocomplete="off" maxlength="13" aria-describedby="m-nip-opis m-nip-blad">
+              <p id="m-nip-opis" class="text-xs text-[#bdc9cc]" style="margin-top:4px">10 cyfr, bez kresek</p>
+              <p id="m-nip-blad" class="m-zgoda-blad" style="margin:4px 0 0" role="alert" hidden>Podaj poprawny NIP (10 cyfr).</p>
+            </div>
           </div>
           <div class="grid items-start gap-4 min-[421px]:grid-cols-2">
             <div>
@@ -245,7 +255,7 @@
     $('m-zgoda').hidden = etap !== 'upload';
     $('m-https').hidden = etap !== 'upload';
     rysujEtapy({ upload: 0, processing: 1, result: 2, thanks: 2 }[etap]);
-    if (etap === 'result') nabijKwote();
+    if (etap === 'result') { nabijKwote(); wypelnijNipZFaktury(); }
     wyslijWysokosc();
   }
 
@@ -362,11 +372,34 @@
 
   $('m-kontakt').addEventListener('submit', (e) => {
     e.preventDefault();
+    // NIP: 10 cyfr z poprawną sumą kontrolną (wagi 6-5-7-2-3-4-5-6-7); kreski i spacje są usuwane
+    const nip = $('m-nip').value.replace(/[\s-]/g, '');
+    const wagi = [6, 5, 7, 2, 3, 4, 5, 6, 7];
+    const nipOk = /^\d{10}$/.test(nip) && wagi.reduce((s, w, i) => s + w * Number(nip[i]), 0) % 11 === Number(nip[9]);
+    $('m-nip-blad').hidden = nipOk;
+    $('m-nip').style.outline = nipOk ? '' : '2px solid #ff8a80';
     const zgoda = $('m-zgoda-oferta');
+    if (!nipOk) { $('m-zgoda-blad').hidden = zgoda.checked; zgoda.closest('label').classList.toggle('m-blad', !zgoda.checked); $('m-nip').focus(); return; }
     $('m-zgoda-blad').hidden = zgoda.checked;
     zgoda.closest('label').classList.toggle('m-blad', !zgoda.checked);
     if (!zgoda.checked) { zgoda.focus(); wyslijWysokosc(); return; }
     pokaz('thanks');
+  });
+  // NIP z faktury: backend odczytuje go z faktur (w makiecie przykładowy numer z poprawną sumą kontrolną)
+  const NIP_Z_FAKTURY = '1234567883';
+  function wypelnijNipZFaktury() {
+    const pole = $('m-nip');
+    if (pole.value || pole.dataset.recznie) return;
+    pole.value = NIP_Z_FAKTURY;
+    pole.classList.add('m-z-faktury');
+    $('m-nip-opis').innerHTML = '<span class="m-nip-z-faktury">✓ Uzupełniliśmy z faktury – sprawdź, czy się zgadza</span>';
+  }
+  $('m-nip').addEventListener('input', () => {
+    $('m-nip-blad').hidden = true;
+    $('m-nip').style.outline = '';
+    $('m-nip').dataset.recznie = '1';
+    $('m-nip').classList.remove('m-z-faktury');
+    $('m-nip-opis').textContent = '10 cyfr, bez kresek';
   });
   $('m-zgoda-oferta').addEventListener('change', (e) => {
     if (!e.target.checked) return;
