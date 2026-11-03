@@ -66,9 +66,10 @@ window.addEventListener('message', (event) => {
 - Po naszej stronie: domyślna wysokość ramki na komputerze 545 px zamiast 900, `min-height: 545px`
   i płynne przejście `transition: height .35s`. To wdrażamy my.
 
-Efekt (zmierzony w makiecie): Faktury i Analiza – 545 px, Wynik + Kontakt – ok. 950 px,
-Dziękujemy – 545 px na komputerze. Makieta tylko to symuluje (wysyła 545 px albo wysokość treści),
-obowiązuje opis powyżej.
+Efekt (zmierzony w makiecie, komputer): Faktury bez plików – ok. 550 px, z 1 / 2 / 3 plikami –
+ok. 565 / 635 / 700 px (ramka rośnie, nic nie przewija się w środku), od 4 plików – ok. 720 px
+i przewija się tylko lista plików (pkt 2.4), Analiza – 545 px, Wynik + Kontakt – ok. 950 px,
+Dziękujemy – 545 px.
 
 ### Propozycja kodu (React)
 
@@ -156,6 +157,9 @@ Gdy lista plików nie jest pusta (`compact`):
   - nazwa pliku (pogrubiona `#152b24`, obcięta wielokropkiem) i pod nią
     „rozmiar · **przesłano**” (`text-xs #52675c`, „przesłano” pogrubione `#416e19`),
   - przycisk-link **„Podgląd”** (otwiera plik w nowej karcie) i **„Usuń”**.
+- **Do 3 plików lista się nie przewija** – rośnie, a z nią ramka (pkt 1). **Od 4. pliku** lista
+  ma `max-height: 218px` (3 wiersze + kawałek czwartego, żeby było widać, że jest więcej)
+  i przewija się w środku; reszta formularza dalej bez przewijania.
 - Stany wiersza podczas wysyłania, błędu, ponowienia i usuwania (pasek postępu, „Ponów”,
   „Usuń z listy”) oraz zasady, kiedy „Analizuj faktury (n)” jest aktywny – **bez zmian**, jak dziś.
   Zmienia się tylko wygląd wiersza (miniatura, układ, przycisk „Podgląd”).
@@ -275,7 +279,7 @@ z obecnej klauzuli („…a nie w celu nieograniczonych kampanii marketingowych�
 - Pliki nie są sprawdzane (typ, rozmiar, strony, liczba) i nigdzie nie są wysyłane.
 - Analiza trwa stałe ok. 7 s, kwota jest na sztywno.
 - Formularz kontaktowy sprawdza tylko zgodę; po jej zaznaczeniu od razu pokazuje „Dziękujemy”.
-- Wysokość ramki jest symulowana (545 px albo wysokość treści) – obowiązuje pkt 1.
+- Makieta mierzy cały `main` z `min-height: 545px` (uproszczenie) – w produkcji obowiązuje pkt 1.
 - Przełącznik TEST, parametry `?etap=…` i link „Zacznij od nowa (tylko w makiecie)”.
 
 ## 5b. Teksty do potwierdzenia
