@@ -225,8 +225,9 @@ Cel: użytkownik ma widzieć, że coś się dzieje. Zamiast statycznej karty z p
 - **Usunąć** etykietę „Bezpłatna konsultacja” (to nie jest konsultacja).
 - Nagłówek (h2, 19 px): **„Zamów ofertę dla swojej firmy, aby zacząć oszczędzać.”**
   (zamiast „Chcesz poznać szczegóły? Zostaw kontakt”).
-- **Nowe pole „NIP firmy”** – w pierwszym rzędzie obok „Imię i nazwisko” (na wąskim ekranie pod nim),
-  dalej rząd „E-mail firmowy” | „Telefon”.
+- **Nowe pole „NIP firmy”** – ostatnie, na całą szerokość. Kolejność pól: „Imię i nazwisko”
+  (cała szerokość), „E-mail firmowy” | „Telefon” (jeden rząd, na wąskim ekranie jedno pod drugim),
+  „NIP firmy” (cała szerokość).
   - **Uzupełnia się samo z faktury**, jeśli backend odczytał NIP (dziś już go macie: `result.teaser.nip`
     w wyniku analizy). Pole jest wtedy podświetlone (`inset 0 0 0 2px #c8ff3d`, tło `#f7ffe6`),
     a pod nim zamiast podpowiedzi: **„✓ Uzupełniliśmy z faktury – sprawdź, czy się zgadza”**
